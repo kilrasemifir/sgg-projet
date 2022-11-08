@@ -4,4 +4,16 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - ./data/db:/data/db
+      - ./data/mongo:/data/db
+
+  mysql:
+    image: mysql:8
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./data/mysql:/var/lib/mysql-files
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: stocks
+
