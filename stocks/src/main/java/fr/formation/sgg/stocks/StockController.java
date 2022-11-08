@@ -34,4 +34,9 @@ public class StockController {
     public void deleteById(@PathVariable Long id) {
         service.deleteById(id);
     }
+
+    @PutMapping("quantite")
+    public void updateStock(@RequestBody Stock dto) {
+        service.updateStock(dto.getProduitId(), dto.getQuantite());
+    }
 }

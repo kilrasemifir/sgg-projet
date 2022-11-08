@@ -31,4 +31,14 @@ public class StockService {
         return repository.findAll();
     }
 
+    public void updateStock(String id, int stock) {
+        Stock stockToUpdate = this.repository.findByProduitId(id);
+        if (stockToUpdate == null) {
+            stockToUpdate = new Stock();
+            stockToUpdate.setProduitId(id);
+        }
+        stockToUpdate.setQuantite(stockToUpdate.getQuantite() + stock);
+        this.save(stockToUpdate);
+    }
+
 }

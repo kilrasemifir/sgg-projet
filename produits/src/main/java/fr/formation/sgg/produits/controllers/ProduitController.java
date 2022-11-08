@@ -35,4 +35,9 @@ public class ProduitController {
     public void deleteById(@PathVariable String id) {
         service.deleteById(id);
     }
+
+    @PutMapping("{id}")
+    public void updateStock(@PathVariable String id, @RequestParam Long quantite) {
+        service.upateStok(id, quantite);
+    }
 }
