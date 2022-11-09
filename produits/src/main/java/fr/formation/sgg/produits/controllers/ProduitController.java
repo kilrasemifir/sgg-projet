@@ -38,6 +38,6 @@ public class ProduitController {
 
     @PutMapping("{id}")
     public void updateStock(@PathVariable String id, @RequestParam Long quantite) {
-        service.upateStok(id, quantite);
+        service.updateStockQuantite(id, quantite);
     }
 }

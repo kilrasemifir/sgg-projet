@@ -1,11 +1,10 @@
 package fr.formation.sgg.produits.services;
 
+import fr.formation.sgg.produits.dto.Stock;
+import fr.formation.sgg.produits.kafka.StockProducer;
 import fr.formation.sgg.produits.models.Produit;
 import fr.formation.sgg.produits.repositories.ProduitRepository;
-import fr.formation.sgg.produits.repositories.StockRestRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -13,11 +12,12 @@ import java.util.List;
 public class ProduitService {
 
     private final ProduitRepository repository;
-    private final StockRestRepository stockRestRepository;
 
-    public ProduitService(ProduitRepository repository, StockRestRepository stockRestRepository) {
+    private final StockProducer stockProducer;
+
+    public ProduitService(ProduitRepository repository, StockProducer stockProducer) {
         this.repository = repository;
-        this.stockRestRepository = stockRestRepository;
+        this.stockProducer = stockProducer;
     }
 
     public List<Produit> findAll() {
@@ -36,9 +36,9 @@ public class ProduitService {
         repository.deleteById(id);
     }
 
-    public void upateStok(String id, Long stock) {
+    public void updateStockQuantite(String id, Long stock) {
         this.findById(id);
-        stockRestRepository.updateStock(id, stock);
+        stockProducer.send(new Stock(id, stock));
     }
 
 }

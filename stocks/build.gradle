@@ -19,6 +19,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+	// client Kafka pour Spring Boot
+	implementation 'org.springframework.kafka:spring-kafka'
 }
 
 tasks.named('test') {
