@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:"localhost:27017"}
+      database: ${MONGODB_DATABASE:produits}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      topic: ${KAFKA_TOPIC:stock}

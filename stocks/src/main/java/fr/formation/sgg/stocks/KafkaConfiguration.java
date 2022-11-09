@@ -4,6 +4,7 @@ import fr.formation.sgg.stocks.models.Stock;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
@@ -19,8 +20,10 @@ import static org.apache.kafka.clients.consumer.ConsumerConfig.*;
 @Configuration
 public class KafkaConfiguration {
 
-    private String bootstrapUrl = "localhost:9092";
+    @Value("${spring.kafka.bootstrap-servers}")
+    private String bootstrapUrl;
 
+    @Value("${spring.kafka.consumer.topic}")
     private String topic = "stock";
 
     /**

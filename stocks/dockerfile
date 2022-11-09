@@ -1,0 +1,24 @@
+FROM gradle:7.5-jdk11-alpine AS build
+
+# Copie du code source
+## Copie de l'ensemble des fichier en local dans l'image au chemin /home/gradle/src
+COPY --chown=gradle:gradle . /home/source/java
+
+## Deplacement dans le repertoire de travail
+WORKDIR /home/source/java
+
+## Configuration des droits sur le repertoire de travail
+USER root
+RUN chown -R gradle /home/source/java
+
+## Build
+## Génération du jar
+RUN gradle clean bootJar
+
+FROM openjdk:11-jre-slim
+
+WORKDIR /home/app/java
+COPY --from=build /home/source/java/build/libs/server.jar /home/app/java/server.jar
+
+ENTRYPOINT ["java","-jar","server.jar"]
+
