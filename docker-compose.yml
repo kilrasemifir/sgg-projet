@@ -92,7 +92,10 @@ services:
 
   # Microservices des stocks
   stocks:
-    build: ./stocks
+    # Construction depuis dockerfile dans le dossier stocks
+    # build: ./stocks
+    # Récupération depuis dockerhub
+    image: killraoux/sgg-stocks
     ports:
       - "8081:8080"
     environment:
