@@ -15,3 +15,6 @@ Ce projet est un exemple de projet pour la formation SGG. Il met en place 3 micr
 
 - Cloner le projet
 - Lancer la commande `docker-compose up -d` à la racine du projet
+
+Si vous venez mettre à jour le projet, 
+il faut lancer la commande `docker-compose up -d --build` pour reconstruire les images.
