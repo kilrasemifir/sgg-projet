@@ -109,11 +109,6 @@ services:
     container_name: jupyter-notebook
     image: dimajix/jupyter-spark:latest
     command: notebook
-    build:
-      context:  .
-      args:
-        http_proxy: ${http_proxy}
-        https_proxy: ${https_proxy}
     env_file:
       - docker-compose.env
     environment:
